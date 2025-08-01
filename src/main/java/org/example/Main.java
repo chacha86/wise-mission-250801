@@ -1,32 +1,61 @@
 package org.example;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+class WiseSaying {
+    private int number;
+    private String author;
+    private String content;
+
+    public WiseSaying(int number, String author, String content) {
+        this.number = number;
+        this.author = author;
+        this.content = content;
+    }
+
+    public void up(){
+        System.out.println(number+" / " +author+" / "+content);
+    }
+}
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int wiseSayingDb = 0;
+        List<WiseSaying> list = new ArrayList<>();
+        int number = 0;
+        String author;
+        String content;
+        String input;
+
 
         System.out.println("== 명언 앱 ==");
 
         while(true){
             System.out.print("명령) ");
+            input =  sc.nextLine();
 
-            if (Objects.equals(sc.nextLine(), "등록")) {
+            if (input.equals("등록")) {
                 System.out.print("명언 : ");
-                sc.nextLine();
+                content = sc.nextLine();
                 System.out.print("작가 : ");
-                sc.nextLine();
-                System.out.println(++wiseSayingDb + "번 명언이 등록되었습니다.");
-            } else if (Objects.equals(sc.nextLine(), "목록")) {
+                author = sc.nextLine();
+                System.out.println(++number + "번 명언이 등록되었습니다.");
 
+                list.add(new WiseSaying(number, author, content)); // 여기서 객체 생성
+            }
+            else if (input.equals("목록")) {
+                System.out.println("번호 / 작가 / 명언");
+                System.out.println("----------------------");
 
+                for (int i = list.size() - 1; i >= 0; i--) {
+                    list.get(i).up();
+                }
             }
             else {
                 break;
             }
         }
-
     }
 }
