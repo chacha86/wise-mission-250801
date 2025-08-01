@@ -1,0 +1,32 @@
+package org.example;
+
+import java.util.Objects;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int wiseSayingDb = 0;
+
+        System.out.println("== 명언 앱 ==");
+
+        while(true){
+            System.out.print("명령) ");
+
+            if (Objects.equals(sc.nextLine(), "등록")) {
+                System.out.print("명언 : ");
+                sc.nextLine();
+                System.out.print("작가 : ");
+                sc.nextLine();
+                System.out.println(++wiseSayingDb + "번 명언이 등록되었습니다.");
+            } else if (Objects.equals(sc.nextLine(), "목록")) {
+
+
+            }
+            else {
+                break;
+            }
+        }
+
+    }
+}
