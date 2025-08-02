@@ -22,6 +22,16 @@ class WiseSaying {
     public int getNumber(){
         return number;
     }
+
+    public void editWiseSaying(){
+        System.out.println("명언(기존) : " + content);
+        System.out.print("명언 : ");
+        content = new Scanner(System.in).nextLine();
+
+        System.out.println("작가(기존) : " + author);
+        System.out.print("작가 : ");
+        author = new Scanner(System.in).nextLine();
+    }
 }
 
 public class Main {
@@ -65,6 +75,20 @@ public class Main {
                     if (list.get(i).getNumber() == id) {
                         list.remove(i);
                         System.out.println(id + "번 명언이 삭제되었습니다.");
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    System.out.println(id + "번 명언은 존재하지 않습니다.");
+                }
+            } else if (input.startsWith("수정?id=")) {
+                String idStr = input.substring("수정?id=".length());  // "1"
+                int id = Integer.parseInt(idStr);
+                boolean found = false;
+
+                for (WiseSaying wiseSaying : list) {
+                    if (wiseSaying.getNumber() == id) {
+                        wiseSaying.editWiseSaying();
                         found = true;
                     }
                 }
