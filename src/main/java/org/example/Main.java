@@ -59,11 +59,17 @@ public class Main {
             } else if (input.startsWith("삭제?id=")) {
                 String idStr = input.substring("삭제?id=".length());  // "1"
                 int id = Integer.parseInt(idStr);
+                boolean found = false;
+
                 for (int i = 0; i < list.size(); i++) {
                     if (list.get(i).getNumber() == id) {
                         list.remove(i);
                         System.out.println(id + "번 명언이 삭제되었습니다.");
+                        found = true;
                     }
+                }
+                if (!found) {
+                    System.out.println(id + "번 명언은 존재하지 않습니다.");
                 }
             } else {
                 break;
