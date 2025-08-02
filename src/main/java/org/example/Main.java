@@ -18,6 +18,10 @@ class WiseSaying {
     public void up(){
         System.out.println(number+" / " +author+" / "+content);
     }
+
+    public int getNumber(){
+        return number;
+    }
 }
 
 public class Main {
@@ -44,16 +48,24 @@ public class Main {
                 System.out.println(++number + "번 명언이 등록되었습니다.");
 
                 list.add(new WiseSaying(number, author, content)); // 여기서 객체 생성
-            }
-            else if (input.equals("목록")) {
+            } else if (input.equals("목록")) {
                 System.out.println("번호 / 작가 / 명언");
                 System.out.println("----------------------");
 
                 for (int i = list.size() - 1; i >= 0; i--) {
                     list.get(i).up();
                 }
-            }
-            else {
+
+            } else if (input.startsWith("삭제?id=")) {
+                String idStr = input.substring("삭제?id=".length());  // "1"
+                int id = Integer.parseInt(idStr);
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).getNumber() == id) {
+                        list.remove(i);
+                        System.out.println(id + "번 명언이 삭제되었습니다.");
+                    }
+                }
+            } else {
                 break;
             }
         }
